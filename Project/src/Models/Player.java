@@ -41,7 +41,7 @@ public class Player {
         //move contains two things
         //1. the cell to which we move and
         //2. the player who is moving
-
+        return new Move(new Cell(row,col,this),this);
 
     }
 

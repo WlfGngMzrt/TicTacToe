@@ -102,7 +102,7 @@ public class Game {
             HashSet<Character> set = new HashSet<>();
             for(Player player : players)
             {
-                set.add(player.getSymbol());
+                set.add(player.getSymbol().getSymbolChar());
             }
             if(set.size() != players.size())
             {
