@@ -10,10 +10,9 @@ public class Player {
     private String name;
     private PlayerType playerType;
     private Symbol symbol;
-
     private Scanner scanner;
 
-    public Player(long id, String name, PlayerType playerType, Symbol symbol, Scanner scanner) {
+    public Player(long id, String name, PlayerType playerType, Symbol symbol) {
         this.id = id;
         this.name = name;
         this.playerType = playerType;
@@ -29,13 +28,13 @@ public class Player {
         int col = scanner.nextInt();
 
         //validate the move throw exception if required
-        if(row < 1 || row > board.dimension)
+        if(row < 1 || row > board.getSize())
         {
-            throw new InvalidRowNumberException("Please select a row greater than 0 and less than " + board.dimension + 1);
+            throw new InvalidRowNumberException("Please select a row greater than 0 and less than " + board.getSize() + 1);
         }
-        if(col < 1 || col > board.dimension)
+        if(col < 1 || col > board.getSize())
         {
-            throw new InvalidColumnNumberException("Please select a column greater than 0 and less than " + board.dimension + 1);
+            throw new InvalidColumnNumberException("Please select a column greater than 0 and less than " + board.getSize() + 1);
         }
 
         //move contains two things

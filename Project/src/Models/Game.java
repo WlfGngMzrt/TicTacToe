@@ -5,11 +5,14 @@ import Exceptions.InvalidBotCountException;
 import Exceptions.InvalidDimensionException;
 import Exceptions.InvalidNumberOfPlayers;
 
+import Strategy.WinningStrategies.WinningStrategy;
+
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class Game {
-    private List<Players> players;
+    private List<Player> players;
     private Board board;
     private List<Move> moves;
     private Player player;
@@ -18,7 +21,7 @@ public class Game {
     private int nextPlayerIndex;
     private List<WinningStrategy> winningStrategies;
 
-    private Game(List<Players> players, Board board, List<Move> moves, int nextPlayerIndex, List<WinningStrategy> winningStrategies) {
+    private Game(List<Player> players, Board board, List<WinningStrategy> winningStrategies) {
         this.players = players;
         this.board = board;
         this.moves = new ArrayList<Move>();
@@ -28,23 +31,27 @@ public class Game {
     }
 
 
-    public static class Builder()
+    public static class Builder
     {
-        private List<Players> players;
+        private List<Player> players;
         private List<WinningStrategy> winningStrategies;
         private int dimension;
+
+        public Builder() {
+
+        }
 
         public static Builder builder()
         {
             return new Builder();
         }
 
-        public Builder(List<Players> players, List<WinningStrategy> winningStrategies, int dimension) {
+        public Builder(List<Player> players, List<WinningStrategy> winningStrategies, int dimension) {
             this.players = new ArrayList<Player>();
             this.winningStrategies = new ArrayList<WinningStrategy>();
             this.dimension = 0;
         }
-        public void setPlayers(List<Players> players) {
+        public void setPlayers(List<Player> players) {
             this.players = players;
         }
         public void setWinningStrategies(List<WinningStrategy> winningStrategies) {
@@ -120,7 +127,7 @@ public class Game {
         private Game build()
         {
             validate();
-            return  new Game(players,new Board(n), winningStrategies);
+            return  new Game(players,new Board(dimension), winningStrategies);
         }
     }
 }
